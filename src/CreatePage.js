@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-// import { Route, Link, Switch, Redirect } from "react-router-dom"
+import { Route, Link, Switch, Redirect } from "react-router-dom"
 
 
 class CreatePage extends Component {
@@ -10,7 +10,8 @@ class CreatePage extends Component {
         birdImage : '',
         genus : '',
         conservationStatus : '',
-        homePage : ''
+        homePage : '',
+        submitted : false
       };
 
 
@@ -61,11 +62,19 @@ class CreatePage extends Component {
 
 
         this.props.setBirds(bird)
+        this.setState({
+          submitted : true
+        })
       }
 
   render() {
 
+    if (this.state.submitted) {
+      return <Redirect to="/"/>
+    };
+
     return (
+
       <div>
           <form>
             Name:
